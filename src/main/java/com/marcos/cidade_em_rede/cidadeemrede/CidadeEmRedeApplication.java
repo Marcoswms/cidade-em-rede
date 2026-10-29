@@ -1,4 +1,4 @@
-package br.com.cidadeemrede;
+package com.marcos.cidade_em_rede.cidadeemrede;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

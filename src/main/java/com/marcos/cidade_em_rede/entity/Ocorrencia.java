@@ -1,7 +1,9 @@
 package com.marcos.cidade_em_rede.entity;
 
-import jakarta.persistence.*;
+import com.marcos.cidade_em_rede.enums.StatusOcorrencia;
+import com.marcos.cidade_em_rede.enums.CategoriaOcorrencia;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,6 +18,12 @@ public class Ocorrencia {
     private Double latitude;
     private Double longitude;
     private LocalDateTime dataCriacao;
+
+    @Enumerated(EnumType.STRING)
+    private CategoriaOcorrencia categoria;
+
+    @Enumerated(EnumType.STRING)
+    private StatusOcorrencia status;
 
     public Ocorrencia() {
 
@@ -63,5 +71,21 @@ public class Ocorrencia {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public CategoriaOcorrencia getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaOcorrencia categoria) {
+        this.categoria = categoria;
+    }
+
+    public StatusOcorrencia getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusOcorrencia status) {
+        this.status = status;
     }
 }
