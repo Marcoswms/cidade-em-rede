@@ -14,7 +14,7 @@ public class Ocorrencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String protocolo;
-    private Double descricao;
+    private String descricao;
     private Double latitude;
     private Double longitude;
     private LocalDateTime dataCriacao;
@@ -41,11 +41,11 @@ public class Ocorrencia {
         this.protocolo = protocolo;
     }
 
-    public Double getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(Double descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
