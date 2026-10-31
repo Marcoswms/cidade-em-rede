@@ -7,6 +7,8 @@ import com.marcos.cidade_em_rede.repository.OcorrenciaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,4 +29,14 @@ public class OcorrenciaService {
         ocorrencia.setDataCriacao(LocalDateTime.now());
         return ocorrenciaRepository.save(ocorrencia);
     }
+
+    public List<Ocorrencia> listarOcorrencias() {
+        return ocorrenciaRepository.findAll();
+    }
+
+    public Optional<Ocorrencia> buscarPorId(Long id) {
+        return ocorrenciaRepository.findById(id);
+    }
+
+
 }
