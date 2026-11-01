@@ -2,6 +2,7 @@ package com.marcos.cidade_em_rede.controller;
 
 
 import com.marcos.cidade_em_rede.dto.OcorrenciaRequestDTO;
+import com.marcos.cidade_em_rede.dto.OcorrenciaResponseDTO;
 import com.marcos.cidade_em_rede.entity.Ocorrencia;
 import com.marcos.cidade_em_rede.service.OcorrenciaService;
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    public ResponseEntity<Ocorrencia> registrar(@Valid @RequestBody OcorrenciaRequestDTO dados) {
+    public ResponseEntity<OcorrenciaResponseDTO> registrar(@Valid @RequestBody OcorrenciaRequestDTO dados) {
         Ocorrencia ocorrencia = new Ocorrencia();
 
         ocorrencia.setDescricao(dados.getDescricao());
@@ -31,7 +32,9 @@ public class OcorrenciaController {
         ocorrencia.setLongitude(dados.getLongitude());
 
         Ocorrencia novaOcorrencia = ocorrenciaService.registrarOcorrencia(ocorrencia);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaOcorrencia);
+        OcorrenciaResponseDTO resposta = new OcorrenciaResponseDTO(novaOcorrencia);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
     }
 
     @GetMapping
