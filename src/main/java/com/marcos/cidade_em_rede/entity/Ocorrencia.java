@@ -20,17 +20,17 @@ public class Ocorrencia {
     private Long id;
     private String protocolo;
 
-    @NotBlank
+    @NotBlank(message = "A descrição da ocorrência é obrigatória.")
     private String descricao;
 
-    @NotNull
-    @DecimalMin("-90.0")
-    @DecimalMax("90.0")
+    @NotNull(message = "A categoria da ocorrência é obrigatória.")
+    @DecimalMin(value = "-90.0", message = "A latitude não pode ser menor que -90.")
+    @DecimalMax(value = "90.0", message = "A latitude não pode ser maior que 90.")
     private Double latitude;
 
-    @NotNull
-    @DecimalMin("-90.0")
-    @DecimalMax("90.0")
+    @NotNull(message = "A longitude é obrigatória.")
+    @DecimalMin(value = "-180.0", message = "A longitude não pode ser menor que -180.")
+    @DecimalMax(value = "180.0", message = "A longitude não pode ser maior que 180.")
     private Double longitude;
     private LocalDateTime dataCriacao;
 
