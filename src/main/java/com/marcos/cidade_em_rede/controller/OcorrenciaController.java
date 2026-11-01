@@ -3,6 +3,7 @@ package com.marcos.cidade_em_rede.controller;
 
 import com.marcos.cidade_em_rede.entity.Ocorrencia;
 import com.marcos.cidade_em_rede.service.OcorrenciaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class OcorrenciaController {
 
     @PostMapping
     public ResponseEntity<Ocorrencia> registrar(
-            @RequestBody Ocorrencia ocorrencia) {
+            @Valid @RequestBody Ocorrencia ocorrencia) {
 
         Ocorrencia novaOcorrencia =
                 ocorrenciaService.registrarOcorrencia(ocorrencia);
@@ -44,7 +45,7 @@ public class OcorrenciaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Ocorrencia> atualizar(@PathVariable Long id, @RequestBody Ocorrencia dadosAtualizados) {
+    public ResponseEntity<Ocorrencia> atualizar(@PathVariable Long id, @Valid @RequestBody Ocorrencia dadosAtualizados) {
         return ocorrenciaService.atualizarPorId(id, dadosAtualizados)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

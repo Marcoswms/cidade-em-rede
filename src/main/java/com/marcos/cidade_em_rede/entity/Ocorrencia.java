@@ -4,6 +4,11 @@ import com.marcos.cidade_em_rede.enums.StatusOcorrencia;
 import com.marcos.cidade_em_rede.enums.CategoriaOcorrencia;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,11 +19,22 @@ public class Ocorrencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String protocolo;
+
+    @NotBlank
     private String descricao;
+
+    @NotNull
+    @DecimalMin("-90.0")
+    @DecimalMax("90.0")
     private Double latitude;
+
+    @NotNull
+    @DecimalMin("-90.0")
+    @DecimalMax("90.0")
     private Double longitude;
     private LocalDateTime dataCriacao;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private CategoriaOcorrencia categoria;
 
