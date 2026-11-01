@@ -21,4 +21,12 @@ public class GlobalExceptionHandler {
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erros);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, String>> tratarErroInterno(Exception exception) {
+        Map<String, String> erro = new HashMap<>();
+
+        erro.put("erro", "Ocorreu um erro interno no servidor.");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erro);
+    }
 }
