@@ -23,7 +23,7 @@ public class Ocorrencia {
     @NotBlank(message = "A descrição da ocorrência é obrigatória.")
     private String descricao;
 
-    @NotNull(message = "A categoria da ocorrência é obrigatória.")
+    @NotNull(message = "A latitude é obrigatória.")
     @DecimalMin(value = "-90.0", message = "A latitude não pode ser menor que -90.")
     @DecimalMax(value = "90.0", message = "A latitude não pode ser maior que 90.")
     private Double latitude;
@@ -34,7 +34,7 @@ public class Ocorrencia {
     private Double longitude;
     private LocalDateTime dataCriacao;
 
-    @NotNull
+    @NotNull(message = "A categoria da ocorrência é obrigatória.")
     @Enumerated(EnumType.STRING)
     private CategoriaOcorrencia categoria;
 
