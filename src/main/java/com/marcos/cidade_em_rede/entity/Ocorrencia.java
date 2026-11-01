@@ -23,6 +23,10 @@ public class Ocorrencia {
     @NotBlank(message = "A descrição da ocorrência é obrigatória.")
     private String descricao;
 
+    @NotNull(message = "A categoria da ocorrência é obrigatória.")
+    @Enumerated(EnumType.STRING)
+    private CategoriaOcorrencia categoria;
+
     @NotNull(message = "A latitude é obrigatória.")
     @DecimalMin(value = "-90.0", message = "A latitude não pode ser menor que -90.")
     @DecimalMax(value = "90.0", message = "A latitude não pode ser maior que 90.")
@@ -33,10 +37,6 @@ public class Ocorrencia {
     @DecimalMax(value = "180.0", message = "A longitude não pode ser maior que 180.")
     private Double longitude;
     private LocalDateTime dataCriacao;
-
-    @NotNull(message = "A categoria da ocorrência é obrigatória.")
-    @Enumerated(EnumType.STRING)
-    private CategoriaOcorrencia categoria;
 
     @Enumerated(EnumType.STRING)
     private StatusOcorrencia status;
@@ -65,6 +65,14 @@ public class Ocorrencia {
         this.descricao = descricao;
     }
 
+    public CategoriaOcorrencia getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaOcorrencia categoria) {
+        this.categoria = categoria;
+    }
+
     public Double getLatitude() {
         return latitude;
     }
@@ -87,14 +95,6 @@ public class Ocorrencia {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
-    }
-
-    public CategoriaOcorrencia getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaOcorrencia categoria) {
-        this.categoria = categoria;
     }
 
     public StatusOcorrencia getStatus() {

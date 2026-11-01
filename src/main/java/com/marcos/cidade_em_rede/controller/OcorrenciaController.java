@@ -1,6 +1,7 @@
 package com.marcos.cidade_em_rede.controller;
 
 
+import com.marcos.cidade_em_rede.dto.OcorrenciaRequestDTO;
 import com.marcos.cidade_em_rede.entity.Ocorrencia;
 import com.marcos.cidade_em_rede.service.OcorrenciaService;
 import jakarta.validation.Valid;
@@ -21,14 +22,16 @@ public class OcorrenciaController {
     }
 
     @PostMapping
-    public ResponseEntity<Ocorrencia> registrar(
-            @Valid @RequestBody Ocorrencia ocorrencia) {
+    public ResponseEntity<Ocorrencia> registrar(@Valid @RequestBody OcorrenciaRequestDTO dados) {
+        Ocorrencia ocorrencia = new Ocorrencia();
 
-        Ocorrencia novaOcorrencia =
-                ocorrenciaService.registrarOcorrencia(ocorrencia);
+        ocorrencia.setDescricao(dados.getDescricao());
+        ocorrencia.setCategoria(dados.getCategoria());
+        ocorrencia.setLatitude(dados.getLatitude());
+        ocorrencia.setLongitude(dados.getLongitude());
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED).body(novaOcorrencia);
+        Ocorrencia novaOcorrencia = ocorrenciaService.registrarOcorrencia(ocorrencia);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaOcorrencia);
     }
 
     @GetMapping
