@@ -21,7 +21,6 @@ public class OcorrenciaService {
     }
 
     public Ocorrencia registrarOcorrencia(Ocorrencia ocorrencia) {
-
         ocorrencia.setProtocolo(
                 UUID.randomUUID().toString().replace("-", "").toUpperCase()
         );
@@ -38,5 +37,23 @@ public class OcorrenciaService {
         return ocorrenciaRepository.findById(id);
     }
 
+    public Optional<Ocorrencia> atualizarPorId(Long id, Ocorrencia dadosAtualizados) {
+        return ocorrenciaRepository.findById(id)
+                .map(ocorrencia -> {
+                    ocorrencia.setDescricao(dadosAtualizados.getDescricao());
+                    ocorrencia.setCategoria(dadosAtualizados.getCategoria());
+                    ocorrencia.setLatitude(dadosAtualizados.getLatitude());
+                    ocorrencia.setLongitude(dadosAtualizados.getLongitude());
 
+                    return ocorrenciaRepository.save(ocorrencia);
+                });
+    }
+
+    public boolean deletarPorId(Long id) {
+        if (!ocorrenciaRepository.existsById(id)) {
+            return false;
+        }
+        ocorrenciaRepository.deleteById(id);
+        return true;
+    }
 }

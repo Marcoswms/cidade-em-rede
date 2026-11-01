@@ -61,7 +61,7 @@ public class Ocorrencia {
         return longitude;
     }
 
-    public void setLongitude() {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
